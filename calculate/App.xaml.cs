@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using calculate.Models;
 
 namespace calculate
 {
@@ -13,5 +14,6 @@ namespace calculate
     /// </summary>
     public partial class App : Application
     {
+        public static calculatorContext context { get; } = new calculatorContext();
     }
 }

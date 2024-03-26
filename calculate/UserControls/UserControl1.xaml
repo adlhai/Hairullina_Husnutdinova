@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="calculate.UserControls.UserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:calculate.UserControls"
+             mc:Ignorable="d" 
+            d:DesignHeight="350" d:DesignWidth="1080">
+    <Grid Height="310" Width="1000">
+
+        <Border Height="290" Width="1000" CornerRadius="8,8,8,8" Background="#FFC2DEFF"   BorderBrush="#FF979797" Visibility="Visible">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Background="#FFC2DEFF" >
+                <Label Width="20"></Label>
+                <Image x:Name="Image_Room" Width="200" Height="170" OpacityMask="#FF836060" ></Image>
+                <Label Width="20"></Label>
+                <StackPanel>
+                    <TextBlock x:Name="RoomName" FontFamily="Century Gothic" FontSize="36" HorizontalAlignment="Left" TextDecorations="{x:Null}"  Height="40" Foreground="Black" FontWeight="Bold">Красная</TextBlock>
+                    <Label></Label>
+
+
+                    <Label Height="5"></Label>
+                    <TextBlock x:Name="RoomPeoples" FontFamily="Century Gothic" FontSize="20" HorizontalAlignment="Left" TextDecorations="{x:Null}" Foreground="Black">Кол-во персон:</TextBlock>
+                    <Label Height="15"></Label>
+                    <TextBlock x:Name="RoomDescr" FontFamily="Century Gothic" FontSize="20" HorizontalAlignment="Center" TextDecorations="{x:Null}" Foreground="Black" Width="700" TextWrapping="Wrap">Описание:</TextBlock>
+                    <Label Height="15"></Label>
+                    <TextBlock x:Name="RoomCost" FontFamily="Century Gothic" FontSize="20" HorizontalAlignment="Left" TextDecorations="{x:Null}" Foreground="Black">Стоимость(час):</TextBlock>
+                    <Label Height="25"></Label>
+                    <TextBlock x:Name="RoomId"   HorizontalAlignment="Left" TextDecorations="{x:Null}" Foreground="#FFC2DEFF" FontSize="1">Стоимость(час):</TextBlock>
+
+                    <Button Height="29" Width="150" FontSize="20" Background="#FF4975A9" Foreground="White" BorderBrush="White"  VerticalAlignment="Bottom" FontFamily="Century Gothic" Click="Button_Click">Выбрать</Button>
+
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,103 @@
+﻿<Window x:Class="calculate.Windows.Calculate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:calculate.Windows"
+        mc:Ignorable="d"
+        Title="Калькулятор" Height="800" Width="1480" WindowState="Maximized">
+    <Grid AutomationProperties.IsOffscreenBehavior="FromClip">
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\Аделина\Desktop\Калькулятор\calculate\Windows\Фон.png" Stretch="Fill" TileMode="FlipXY" Opacity="1"/>
+        </Grid.Background>
+        <Grid>
+            <Label></Label>
+            <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" >
+                <Label Height="20"></Label>
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock x:Name="TextBlock_event" Width="580" TextWrapping="Wrap"  TextAlignment="Center" Grid.Column="1" FontSize="40" TextDecorations="Underline" FontFamily="Century Gothic">Выберите тип мероприятия</TextBlock>
+                    <ComboBox Width="540" Height="45"  x:Name="ComboBox_event"   HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="2" FontSize="16" BorderBrush="#FFCBCBCB" FontFamily="Century Gothic">
+                    </ComboBox>
+                </StackPanel>
+                <Label></Label>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" >
+                    <StackPanel Orientation="Vertical" Grid.Column="1">
+                        <TextBlock x:Name="TextBlock_fursh" Width="580" TextWrapping="Wrap" TextAlignment="Center"  FontSize="40" TextDecorations="Underline" FontFamily="Century Gothic" VerticalAlignment="Center">Выберите фуршет</TextBlock>
+                        <Label Width="45"></Label>
+                        <StackPanel x:Name="checkBoxPanelFursh" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        </StackPanel>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" x:Name="TextBoxPanelFursh" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label Height="23" FontFamily="Century Gothic" FontSize="13" Foreground="Black" Content="Кол-во" FontWeight="Bold"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Column="2">
+                        <TextBlock x:Name="TextBlock_Serv" Width="580" TextWrapping="Wrap"  TextAlignment="Center" Grid.Column="2" FontSize="40" TextDecorations="Underline" FontFamily="Century Gothic" FontWeight="Normal">Выберите доп. опции</TextBlock>
+
+                        <Label Width="45"></Label>
+                        <StackPanel x:Name="checkBoxPanel" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        </StackPanel>
+                    </StackPanel>
+
+                </StackPanel>
+                <Label></Label>
+
+
+                <ScrollViewer Width="1180" Height="320" VerticalAlignment="Bottom">
+                    <StackPanel x:Name="RoomsView"/>
+                </ScrollViewer>
+                <Label></Label>
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock x:Name="TextBlock_Name" Width="480" TextWrapping="Wrap"  TextAlignment="Center" FontSize="20" TextDecorations="Underline" FontFamily="Century Gothic" Height="25">Ваше ФИО</TextBlock>
+                            <TextBox x:Name="TextBox_Name" Width="500" Height="25"     HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="20" BorderBrush="#FF042956" FontFamily="Century Gothic"></TextBox>
+                        </StackPanel>
+                        <Label></Label>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock x:Name="TextBlock_Phone" Width="480" TextWrapping="Wrap"  TextAlignment="Center" FontSize="20" TextDecorations="Underline" FontFamily="Century Gothic" Height="25">Номер телефона</TextBlock>
+                            <TextBox x:Name="TextBox_Phone" Width="500" Height="25"     HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="20" BorderBrush="#FF042956" FontFamily="Century Gothic"></TextBox>
+                        </StackPanel>
+
+                        <Label></Label>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock x:Name="TextBlock_Mail" Width="480" TextWrapping="Wrap"  TextAlignment="Center" FontSize="20" TextDecorations="Underline" FontFamily="Century Gothic" Height="25">Почта</TextBlock>
+                            <TextBox x:Name="TextBox_Mail" Width="500" Height="25"     HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="20" BorderBrush="#FF042956" FontFamily="Century Gothic"></TextBox>
+                        </StackPanel>
+                        <Label></Label>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock x:Name="TextBlock_Start" Width="480" TextWrapping="Wrap"  TextAlignment="Center" FontSize="20" TextDecorations="Underline" FontFamily="Century Gothic" Height="25">Начало мероприятия</TextBlock>
+                            <DatePicker x:Name="TextBox_Date1" Width="500" Height="25"     HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="17" BorderBrush="#FF042956" FontFamily="Century Gothic"></DatePicker>
+                        </StackPanel>
+                        <Label></Label>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock x:Name="TextBlock_End" Width="480" TextWrapping="Wrap"  TextAlignment="Center" FontSize="20" TextDecorations="Underline" FontFamily="Century Gothic" Height="25">Завершение мероприятия</TextBlock>
+                            <DatePicker x:Name="TextBox_Date2" Width="500" Height="25"     HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="17" BorderBrush="#FF042956" FontFamily="Century Gothic"></DatePicker>
+                        </StackPanel>
+                        <Label></Label>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock x:Name="TextBlock_Time" Width="480" TextWrapping="Wrap"  TextAlignment="Center" FontSize="20" TextDecorations="Underline" FontFamily="Century Gothic" Height="25">Мероприятие на несколько часов</TextBlock>
+                            <TextBox x:Name="TextBox_Time" Width="300" Height="25"   Text="введите кол-во часов"  HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="20" BorderBrush="#FF042956" FontFamily="Century Gothic" GotFocus="TextBox_Time_GotFocus"></TextBox>
+                            <Label Height="29" FontFamily="Century Gothic" FontSize="19">часов</Label>
+                        </StackPanel>
+                    </StackPanel>
+                    <Label Width="15"></Label>
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                        <Button x:Name="Button_Cost" FontFamily="Century Gothic" FontSize="20" Background="#FFBEDCFF" BorderBrush="#FF070074" FontWeight="Bold" Height="40" Click="Button_Cost_Click_1" >Рассчитать стоимость</Button>
+                        <Label Height="20"></Label>
+
+                        <Button x:Name="Button_Go" Click="Button_Go_Click" FontFamily="Century Gothic" FontSize="20" Background="#FFBEDCFF" BorderBrush="#FF070074" FontWeight="Bold" Height="40">Оставить заявку</Button>
+
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+
+        </Grid>
+        <StackPanel/>
+        <DataGrid HorizontalAlignment="Left" Height="0" Margin="-283,355,0,0" VerticalAlignment="Top" Width="16"/>
+    </Grid>
+</Window>

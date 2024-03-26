@@ -19,9 +19,4 @@
     <PackageReference Include="squirrel.windows" Version="1.9.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\" />
-    <Folder Include="UserControls\" />
-  </ItemGroup>
-
 </Project>
