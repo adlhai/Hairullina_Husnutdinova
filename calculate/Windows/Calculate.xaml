@@ -52,13 +52,13 @@
                 <StackPanel Grid.Column="2" Orientation="Horizontal">
                     <StackPanel Grid.Column="1" HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock x:Name="TextBlock_Name" Width="480" TextWrapping="Wrap"  TextAlignment="Center" FontSize="20" TextDecorations="Underline" FontFamily="Century Gothic" Height="25">Ваше ФИО</TextBlock>
+                            <TextBlock x:Name="TextBlock_Name" PreviewTextInput="TextBlock_Name_PreviewTextInput" Width="480" TextWrapping="Wrap"  TextAlignment="Center" FontSize="20" TextDecorations="Underline" FontFamily="Century Gothic" Height="25">Ваше ФИО</TextBlock>
                             <TextBox x:Name="TextBox_Name" Width="500" Height="25"     HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="20" BorderBrush="#FF042956" FontFamily="Century Gothic"></TextBox>
                         </StackPanel>
                         <Label></Label>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock x:Name="TextBlock_Phone" Width="480" TextWrapping="Wrap"  TextAlignment="Center" FontSize="20" TextDecorations="Underline" FontFamily="Century Gothic" Height="25">Номер телефона</TextBlock>
-                            <TextBox x:Name="TextBox_Phone" Width="500" Height="25"     HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="20" BorderBrush="#FF042956" FontFamily="Century Gothic"></TextBox>
+                            <TextBox x:Name="TextBox_Phone" PreviewTextInput="TextBox_Phone_PreviewTextInput" Width="500" Height="25"     HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="20" BorderBrush="#FF042956" FontFamily="Century Gothic"></TextBox>
                         </StackPanel>
 
                         <Label></Label>
@@ -69,17 +69,17 @@
                         <Label></Label>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock x:Name="TextBlock_Start" Width="480" TextWrapping="Wrap"  TextAlignment="Center" FontSize="20" TextDecorations="Underline" FontFamily="Century Gothic" Height="25">Начало мероприятия</TextBlock>
-                            <DatePicker x:Name="TextBox_Date1" Width="500" Height="25"     HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="17" BorderBrush="#FF042956" FontFamily="Century Gothic"></DatePicker>
+                            <DatePicker x:Name="TextBox_Date1" PreviewTextInput="TextBox_Date1_PreviewTextInput" Width="500" Height="25"     HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="17" BorderBrush="#FF042956" FontFamily="Century Gothic"></DatePicker>
                         </StackPanel>
                         <Label></Label>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock x:Name="TextBlock_End" Width="480" TextWrapping="Wrap"  TextAlignment="Center" FontSize="20" TextDecorations="Underline" FontFamily="Century Gothic" Height="25">Завершение мероприятия</TextBlock>
-                            <DatePicker x:Name="TextBox_Date2" Width="500" Height="25"     HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="17" BorderBrush="#FF042956" FontFamily="Century Gothic"></DatePicker>
+                            <DatePicker x:Name="TextBox_Date2" PreviewTextInput="TextBox_Date2_PreviewTextInput" Width="500" Height="25"     HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="17" BorderBrush="#FF042956" FontFamily="Century Gothic"></DatePicker>
                         </StackPanel>
                         <Label></Label>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock x:Name="TextBlock_Time" Width="480" TextWrapping="Wrap"  TextAlignment="Center" FontSize="20" TextDecorations="Underline" FontFamily="Century Gothic" Height="25">Мероприятие на несколько часов</TextBlock>
-                            <TextBox x:Name="TextBox_Time" Width="300" Height="25"   Text="введите кол-во часов"  HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="20" BorderBrush="#FF042956" FontFamily="Century Gothic" GotFocus="TextBox_Time_GotFocus"></TextBox>
+                            <TextBox x:Name="TextBox_Time" PreviewTextInput="TextBox_Time_PreviewTextInput" Width="300" Height="25"   Text="введите кол-во часов"  HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="20" BorderBrush="#FF042956" FontFamily="Century Gothic" GotFocus="TextBox_Time_GotFocus"></TextBox>
                             <Label Height="29" FontFamily="Century Gothic" FontSize="19">часов</Label>
                         </StackPanel>
                     </StackPanel>

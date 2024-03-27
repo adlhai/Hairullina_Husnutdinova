@@ -25,6 +25,8 @@ namespace calculate.Windows
         public Calculate()
         {
             InitializeComponent();
+            TextBox_Date1.DisplayDateStart = DateTime.Now;
+            TextBox_Date2.DisplayDateStart = DateTime.Now;
             LoadData();
             Classes.Class_ConstantData.connection.Open();
             Class_ConstantData.Calcul = this;
@@ -118,7 +120,17 @@ namespace calculate.Windows
                     {
                         FontSize = 14,
                         Width = 40,
+
                         Tag = Fur1.Id
+
+
+                    };
+                    textBox.PreviewTextInput += (sender, e) =>
+                    {
+                        if (!char.IsDigit(e.Text, e.Text.Length - 1))
+                        {
+                            e.Handled = true; // Отменяем ввод символа, если он не является цифрой
+                        }
                     };
                     checkBoxPanelFursh.Children.Add(checkBox);
 
@@ -134,81 +146,96 @@ namespace calculate.Windows
         
         private void Button_Cost_Click_1(object sender, RoutedEventArgs e)
         {
-            decimal CostFer = 0;
+            if (TextBox_Date1.SelectedDate <= TextBox_Date2.SelectedDate)
+            {
+                if(TextBox_Date1.Text.Length != 0 && TextBox_Date2.Text.Length != 0)
+                { 
+            
+                decimal CostFer = 0;
 
             decimal totalCost = 0;
-            {
-
-
-                foreach (UIElement element in checkBoxPanelFursh.Children)
-                {
-                    if (element is CheckBox checkBox)
                     {
 
-                        string[] parts = checkBox.Content.ToString().Split(' ');
-                        if (decimal.TryParse(parts[parts.Length - 2], out decimal cost))
+
+                        foreach (UIElement element in checkBoxPanelFursh.Children)
                         {
-
-                            var textBox = TextBoxPanelFursh.Children
-                                .OfType<TextBox>()
-                                .FirstOrDefault(tb => (int)tb.Tag == (int)checkBox.Tag);
-
-                            if (textBox != null && checkBox.IsChecked == true && decimal.TryParse(textBox.Text, out decimal quantity))
+                            if (element is CheckBox checkBox)
                             {
 
-                                CostFer += cost * quantity;
+                                string[] parts = checkBox.Content.ToString().Split(' ');
+                                if (decimal.TryParse(parts[parts.Length - 2], out decimal cost))
+                                {
+
+                                    var textBox = TextBoxPanelFursh.Children
+                                        .OfType<TextBox>()
+                                        .FirstOrDefault(tb => (int)tb.Tag == (int)checkBox.Tag);
+
+                                    if (textBox != null && checkBox.IsChecked == true && decimal.TryParse(textBox.Text, out decimal quantity))
+                                    {
+
+                                        CostFer += cost * quantity;
+                                    }
+                                }
+                            }
+
+                        }
+                        foreach (UIElement element in checkBoxPanel.Children)
+                        {
+
+                            if (element is CheckBox checkBox && checkBox.IsChecked == true) // Проверка, что элемент является чекбоксом и он выбран
+                            {
+                                string content = checkBox.Content.ToString(); // Получаем содержимое чекбокса
+                                string[] parts = content.Split(' '); // Разделяем содержимое на части
+
+                                // Попытка преобразовать предпоследнюю часть в число (стоимость)
+                                if (parts.Length > 2 && decimal.TryParse(parts[parts.Length - 2], out decimal cost))
+                                {
+                                    totalCost += cost; // Добавляем стоимость к общей сумме
+                                }
                             }
                         }
-                    }
+                        DateTime date1 = TextBox_Date1.SelectedDate ?? DateTime.MinValue;
 
-                }
-                foreach (UIElement element in checkBoxPanel.Children)
-                {
 
-                    if (element is CheckBox checkBox && checkBox.IsChecked == true) // Проверка, что элемент является чекбоксом и он выбран
-                    {
-                        string content = checkBox.Content.ToString(); // Получаем содержимое чекбокса
-                        string[] parts = content.Split(' '); // Разделяем содержимое на части
+                        DateTime date2 = TextBox_Date2.SelectedDate ?? DateTime.MinValue;
 
-                        // Попытка преобразовать предпоследнюю часть в число (стоимость)
-                        if (parts.Length > 2 && decimal.TryParse(parts[parts.Length - 2], out decimal cost))
+                        // Вычитание дат и получение разницы в часах
+                        TimeSpan difference = date2 - date1;
+                        double hoursDifference = difference.TotalHours;
+                        decimal hoursDifferenceDecimal = (decimal)hoursDifference;
+                        // Вывод количества часов
+                        if (hoursDifferenceDecimal != 0)
                         {
-                            totalCost += cost; // Добавляем стоимость к общей сумме
+                            decimal CostAtMerop = CostFer + totalCost + Roomcostsss * hoursDifferenceDecimal;
+                            MessageBox.Show($"Итоговая стоимость: {CostAtMerop}");
+
+                        }
+                        else if (TextBox_Date2.Text == TextBox_Date1.Text && TextBox_Time.Text != null)
+                        {
+                            string HourText = TextBox_Time.Text;
+
+                            if (int.TryParse(HourText, out H))
+                            {
+                                // Преобразование успешно
+                            }
+                            decimal CostAtMerop = CostFer + totalCost + Roomcostsss * H;
+                            MessageBox.Show($"Итоговая стоимость: {CostAtMerop}");
+
                         }
                     }
-                }
-                DateTime date1 = TextBox_Date1.SelectedDate ?? DateTime.MinValue;
-
-                
-                DateTime date2 = TextBox_Date2.SelectedDate ?? DateTime.MinValue;
-
-                // Вычитание дат и получение разницы в часах
-                TimeSpan difference = date2 - date1;
-                double hoursDifference = difference.TotalHours;
-                decimal hoursDifferenceDecimal = (decimal)hoursDifference;
-                // Вывод количества часов
-                if (hoursDifferenceDecimal != 0)
-                {
-                    decimal CostAtMerop = CostFer + totalCost + Roomcostsss * hoursDifferenceDecimal;
-                    MessageBox.Show($"Итоговая стоимость: {CostAtMerop}");
-
-                }
-                else if (TextBox_Date2.Text == TextBox_Date1.Text && TextBox_Time.Text != null)
-                {
-                    string HourText = TextBox_Time.Text;
-
-                    if (int.TryParse(HourText, out H))
-                    {
-                        // Преобразование успешно
-                    }
-                    decimal CostAtMerop = CostFer + totalCost + Roomcostsss * H;
-                    MessageBox.Show($"Итоговая стоимость: {CostAtMerop}");
-
-                }
-               
 
             }
+                else
+                {
+                    MessageBox.Show("Введите дату мероприятия");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Дата завершения мероприятия не может быть раньше, чем его начало");
+            }
         }
+
 
         private void TextBox_Time_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -217,113 +244,147 @@ namespace calculate.Windows
 
         private void Button_Go_Click(object sender, RoutedEventArgs e)
         {
-            if (TextBox_Name.Text.Length != 0 && TextBox_Phone.Text.Length != 0 && TextBox_Mail.Text.Length != 0)
+            if (TextBox_Date1.SelectedDate <= TextBox_Date2.SelectedDate)
             {
-                Klient newClient = new Klient
+                if (TextBox_Name.Text.Length != 0 && TextBox_Phone.Text.Length != 0 && TextBox_Mail.Text.Length != 0)
                 {
-                    Fullname = TextBox_Name.Text,
-                    Phone = TextBox_Phone.Text,
-                    Email = TextBox_Mail.Text
-                };
-                _dbContext.Klient.Add(newClient);
-                _dbContext.SaveChanges();
-                lastClientId = newClient.Id;
+                    Klient newClient = new Klient
+                    {
+                        Fullname = TextBox_Name.Text,
+                        Phone = TextBox_Phone.Text,
+                        Email = TextBox_Mail.Text
+                    };
+                    _dbContext.Klient.Add(newClient);
+                    _dbContext.SaveChanges();
+                    lastClientId = newClient.Id;
 
-                string HourText = TextBox_Time.Text;
+                    string HourText = TextBox_Time.Text;
 
-                if (int.TryParse(HourText, out H))
-                {
-                    // Преобразование успешно
-                }
-                if (ComboBox_event.SelectedItem != null)
-                {
-                    
-                    var selectedEvent = (Event)ComboBox_event.SelectedItem;// Получаем выбранный элемент из комбобокса
-
-
-                    eventId = selectedEvent.Id;// Присваиваем переменной eventId Id выбранного элемента
-                }
-
-                if (TextBox_Date1.Text.Length != 0 && TextBox_Date2.Text.Length != 0 && eventId != 0 && lastClientId != 0)
-                {
-                    Holiday newHoliday = new Holiday
+                    if (int.TryParse(HourText, out H))
+                    {
+                        // Преобразование успешно
+                    }
+                    if (ComboBox_event.SelectedItem != null)
                     {
 
-                        Startdate = TextBox_Date1.SelectedDate ?? DateTime.Now,
-                        Enddate = TextBox_Date2.SelectedDate ?? DateTime.Now,
-                        Eventid = eventId,
-                        Roomid = RoomsId,
-                        Klientid = lastClientId,
-                        Hours = H,
+                        var selectedEvent = (Event)ComboBox_event.SelectedItem;// Получаем выбранный элемент из комбобокса
 
-                    };
-                    _dbContext.Holiday.Add(newHoliday);
-                    _dbContext.SaveChanges();
-                    lastHolidayId = newHoliday.Id;
-                    MessageBox.Show("Ваша заявка принята, ожидайте звонок администратора в теч. 24 часов");
+
+                        eventId = selectedEvent.Id;// Присваиваем переменной eventId Id выбранного элемента
+                    }
+
+                    if (TextBox_Date1.Text.Length != 0 && TextBox_Date2.Text.Length != 0 && eventId != 0 && lastClientId != 0)
+                    {
+                        Holiday newHoliday = new Holiday
+                        {
+
+                            Startdate = TextBox_Date1.SelectedDate ?? DateTime.Now,
+                            Enddate = TextBox_Date2.SelectedDate ?? DateTime.Now,
+                            Eventid = eventId,
+                            Roomid = RoomsId,
+                            Klientid = lastClientId,
+                            Hours = H,
+
+                        };
+                        _dbContext.Holiday.Add(newHoliday);
+                        _dbContext.SaveChanges();
+                        lastHolidayId = newHoliday.Id;
+                        MessageBox.Show("Ваша заявка принята, ожидайте звонок администратора в теч. 24 часов");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Убедитесь, что вы выбрали даты мероприятий и помещение!");
+                    }
+
+
+
+
+
+                    using (var context = new calculatorContext())
+                    {
+                        List<TextBox> textBoxes = TextBoxPanelFursh.Children.OfType<TextBox>().ToList();
+
+                        List<CheckBox> checkBoxes = checkBoxPanelFursh.Children.OfType<CheckBox>().Where(cb => cb.IsChecked == true).ToList();
+                        for (int i = 0; i < checkBoxes.Count; i++)
+                        {
+                            var selectedFurshId = (int)checkBoxes[i].Tag;
+                            var count = textBoxes[i].Text;
+
+                            var holidayfursh = new Holidayfursh
+                            {
+                                Holidayid = lastHolidayId,
+                                Furshid = selectedFurshId,
+                                Count = count
+                            };
+
+                            context.Holidayfursh.Add(holidayfursh);
+                            context.SaveChanges();
+                        }
+
+
+                    }
+
+                    using (var context = new calculatorContext())
+                    {
+                        foreach (var checkBox in checkBoxPanel.Children.OfType<CheckBox>().Where(cb => cb.IsChecked == true))
+                        {
+                            int servicesId = (int)checkBox.Tag; // Получаем Id сервиса из Tag чекбокса
+                            MessageBox.Show(servicesId.ToString());
+
+                            var holidayService = new Holidayservices // Создаем экземпляр Holidayservices и заполняем его данными
+                            {
+                                Holidayid = lastHolidayId, // Записываем последний добавленный праздник
+                                Servicesid = servicesId
+                            };
+
+
+                            context.Holidayservices.Add(holidayService); // Добавляем данные в таблицу Holidayservices
+                            context.SaveChanges(); // Сохраняем изменения в базе данных
+                        }
+
+
+
+                    }
+
+
+
                 }
                 else
                 {
-                    MessageBox.Show("Убедитесь, что вы выбрали даты мероприятий и помещение!");
+
+                    MessageBox.Show("Дата завершения мероприятия не может быть раньше, чем его начало");
                 }
-
-
-
-
-
-                using (var context = new calculatorContext())
-                {
-                    List<TextBox> textBoxes = TextBoxPanelFursh.Children.OfType<TextBox>().ToList();
-
-                    List<CheckBox> checkBoxes = checkBoxPanelFursh.Children.OfType<CheckBox>().Where(cb => cb.IsChecked == true).ToList();
-                    for (int i = 0; i < checkBoxes.Count; i++)
-                    {
-                        var selectedFurshId = (int)checkBoxes[i].Tag;
-                        var count = textBoxes[i].Text;
-
-                        var holidayfursh = new Holidayfursh
-                        {
-                            Holidayid = lastHolidayId,
-                            Furshid = selectedFurshId,
-                            Count = count
-                        };
-
-                        context.Holidayfursh.Add(holidayfursh);
-                        context.SaveChanges();
-                    }
-
-
-                }
-
-                using (var context = new calculatorContext())
-                {
-                    foreach (var checkBox in checkBoxPanel.Children.OfType<CheckBox>().Where(cb => cb.IsChecked == true))
-                    {
-                        int servicesId = (int)checkBox.Tag; // Получаем Id сервиса из Tag чекбокса
-                        MessageBox.Show(servicesId.ToString());
-                        
-                        var holidayService = new Holidayservices // Создаем экземпляр Holidayservices и заполняем его данными
-                        {
-                            Holidayid = lastHolidayId, // Записываем последний добавленный праздник
-                            Servicesid = servicesId
-                        };
-
-                        
-                        context.Holidayservices.Add(holidayService); // Добавляем данные в таблицу Holidayservices
-                        context.SaveChanges(); // Сохраняем изменения в базе данных
-                    }
-
-                    
-
-                }
-
-
-
             }
-            else
+            MessageBox.Show("Заполните фио, номер телефона и почту");
+        }
+
+        private void TextBox_Phone_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = "0123456789".IndexOf(e.Text) < 0;
+        }
+
+        private void TextBox_Time_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = "0123456789".IndexOf(e.Text) <= 0;
+        }
+
+        private void TextBlock_Name_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            char l = e.Text[0];
+            if ((l < 'A' || l < 'z') && l != '\b' && l != '.' && l != ' ')
             {
-                MessageBox.Show("Заполните фио, номер телефона и почту");
+                e.Handled = true;
             }
+        }
+
+        private void TextBox_Date1_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
+
+        private void TextBox_Date2_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
         }
     }
 }
