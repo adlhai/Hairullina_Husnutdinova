@@ -109,3 +109,10 @@ C:\Users\Аделина\Desktop\Калькулятор\calculate\obj\Debug\net5.
 C:\Users\Аделина\Desktop\Калькулятор\calculate\obj\Debug\net5.0-windows\calculate.csproj.CoreCompileInputs.cache
 C:\Users\Аделина\Desktop\Калькулятор\calculate\obj\Debug\net5.0-windows\calculate.csproj.CopyComplete
 C:\Users\Аделина\Desktop\Калькулятор\calculate\obj\Debug\net5.0-windows\calculate.genruntimeconfig.cache
+C:\Users\79874\source\repos\calculate\calculate\obj\Debug\net5.0-windows\calculate.csprojAssemblyReference.cache
+C:\Users\79874\source\repos\calculate\calculate\obj\Debug\net5.0-windows\Pages\PageRooms.g.cs
+C:\Users\79874\source\repos\calculate\calculate\obj\Debug\net5.0-windows\UserControls\UserControl1.g.cs
+C:\Users\79874\source\repos\calculate\calculate\obj\Debug\net5.0-windows\Windows\Calculate.g.cs
+C:\Users\79874\source\repos\calculate\calculate\obj\Debug\net5.0-windows\Pages\PageRooms.baml
+C:\Users\79874\source\repos\calculate\calculate\obj\Debug\net5.0-windows\UserControls\UserControl1.baml
+C:\Users\79874\source\repos\calculate\calculate\obj\Debug\net5.0-windows\Windows\Calculate.baml

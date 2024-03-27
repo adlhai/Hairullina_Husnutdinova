@@ -14,6 +14,7 @@ namespace calculate.Classes
     class Class_ConstantData
     {
         public static Windows.Calculate Calcul;
-        public static MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;user=root;pwd=adelina2601;database=calculator");
+        public static string ID;
+        public static MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;user=root;pwd=LIDIA28;database=calculator");
     }
 }
