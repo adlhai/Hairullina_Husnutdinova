@@ -8,7 +8,7 @@
         Title="Калькулятор" Height="800" Width="1480" WindowState="Maximized">
     <Grid AutomationProperties.IsOffscreenBehavior="FromClip">
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\79874\source\repos\calculate\calculate\Windows\Фон.png" Stretch="Fill" TileMode="FlipXY" Opacity="1"/>
+            <ImageBrush ImageSource="C:\Users\Аделина\Desktop\Калькулятор\calculate\Windows\Фон.png" Stretch="Fill" TileMode="FlipXY" Opacity="1"/>
         </Grid.Background>
         <Grid>
             <Label></Label>
@@ -64,7 +64,7 @@
                         <Label></Label>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <TextBlock x:Name="TextBlock_Mail" Width="480" TextWrapping="Wrap"  TextAlignment="Center" FontSize="20" TextDecorations="Underline" FontFamily="Century Gothic" Height="25">Почта</TextBlock>
-                            <TextBox x:Name="TextBox_Mail" Width="500" Height="25"     HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="20" BorderBrush="#FF042956" FontFamily="Century Gothic"></TextBox>
+                            <TextBox x:Name="TextBox_Mail" Width="500" Height="25"     HorizontalAlignment="Center" VerticalAlignment="Center"   FontSize="20" BorderBrush="#FF042956" FontFamily="Century Gothic" PreviewTextInput="TextBox_Mail_PreviewTextInput"></TextBox>
                         </StackPanel>
                         <Label></Label>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

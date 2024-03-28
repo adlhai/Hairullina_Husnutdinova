@@ -329,7 +329,7 @@ namespace calculate.Windows
                         foreach (var checkBox in checkBoxPanel.Children.OfType<CheckBox>().Where(cb => cb.IsChecked == true))
                         {
                             int servicesId = (int)checkBox.Tag; // Получаем Id сервиса из Tag чекбокса
-                            MessageBox.Show(servicesId.ToString());
+                           
 
                             var holidayService = new Holidayservices // Создаем экземпляр Holidayservices и заполняем его данными
                             {
@@ -354,8 +354,14 @@ namespace calculate.Windows
 
                     MessageBox.Show("Дата завершения мероприятия не может быть раньше, чем его начало");
                 }
+                
             }
-            MessageBox.Show("Заполните фио, номер телефона и почту");
+            else
+            {
+                MessageBox.Show("Заполните фио, номер телефона и почту");
+            }
+            
+
         }
 
         private void TextBox_Phone_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -385,6 +391,17 @@ namespace calculate.Windows
         private void TextBox_Date2_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
 
+        }
+
+        private void TextBox_Mail_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            {
+                char l = e.Text[0];
+                if (!((l >= 'A' && l <= 'Z') || (l >= 'a' && l <= 'z') || l == '\b' || l == '.' || l == ' ' || l == '@' || (l >= '0' && l <= '9')))
+                {
+                    e.Handled = true;
+                }
+            }
         }
     }
 }
